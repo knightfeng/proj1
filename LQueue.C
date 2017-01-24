@@ -127,3 +127,88 @@ void Queue::dequeue()
    else
       cerr << "*** Queue is empty -- can't remove a value ***\n";
 }
+
+void Queue::merge_two_queues(Queue q1, Queue q2)
+{
+  
+std::cout<<"Hello!"<<std::endl;
+
+  Queue temp = Queue();
+  
+  if(q2.empty()) 
+  {
+    //delete temp;
+    q1.display(cout);
+    return;
+  }
+  
+  else if(q1.empty())
+  {
+    q1 = q2;
+    //delete temp;
+    q1.display(cout);
+    return;
+  }
+
+  else
+  {
+    
+    while(!q1.empty() && !q2.empty())
+    {
+      if(q1.empty() && !q2.empty())
+      {
+        temp.enqueue(q2.front());
+        q2.dequeue();
+      }
+
+      else if(!q1.empty() && q2.empty())
+      {
+        temp.enqueue(q1.front());
+        q1.dequeue();
+      }
+
+      else if(q1.front() <= q2.front())
+      {
+        temp.enqueue(q1.front());
+        q1.dequeue();
+      }
+
+      else
+      {
+        temp.enqueue(q2.front());
+        q2.dequeue();
+      }
+
+    }
+
+    q1 = temp;
+    //delete temp;
+    q1.display(cout);
+
+
+  }
+
+
+
+
+
+  /*
+  q1.display(cout);
+    q1.display(cout);
+    q1.display(cout); 
+  */
+  //Trivial cases queue 2 is empty, queue1 is empty)
+  //Compare them by data value.
+  //FIFO
+  //Start at FRONT of Queue or Back?
+  //Case 1: Same
+  //Case 2: queue 1 is ahead
+  //Case 3: queue 2 is ahead
+
+
+
+
+
+}
+
+

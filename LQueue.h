@@ -109,6 +109,16 @@ class Queue
         and execution allowed to proceed.
   -----------------------------------------------------------------------*/
 
+ void merge_two_queues(Queue q1, Queue q2);
+  /*-----------------------------------------------------------------------
+    Remove value at front of queue (if any).
+
+    Precondition:  Queue is nonempty.
+    Postcondition: Value at front of queue has been removed, unless
+        queue is empty; in that case, an error message is displayed 
+        and execution allowed to proceed.
+  -----------------------------------------------------------------------*/
+
  private:
    /*** Node class ***/
    class Node

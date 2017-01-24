@@ -12,7 +12,9 @@ void print(Queue q)
 
 int main(void)
 {
+  
    Queue q1;
+   
    cout << "Queue created.  Empty? " << boolalpha << q1.empty() << endl;
 
    cout << "How many elements to add to the queue? ";
@@ -26,6 +28,9 @@ int main(void)
    cout << endl;
 
    Queue q2;
+   
+   q1.merge_two_queues(q2, q1);
+   
    q2 = q1;
    cout << "Contents of queue q2 after q2 = q1 (via  print):\n";
    print(q2); 
@@ -35,6 +40,8 @@ int main(void)
 
    cout << "Front value in q2: " << q2.front() << endl;
 
+   
+   
    while (!q2.empty())
    {
      cout << "Remove front -- Queue contents: ";
@@ -46,5 +53,9 @@ int main(void)
    cout << "Trying to remove front of q2: " << endl;
    q2.dequeue();
    //system("PAUSE");
+   
+   
+
+
    return 0;
 }
