@@ -111,12 +111,11 @@ class Queue
 
  void merge_two_queues(Queue q1, Queue& q2);
   /*-----------------------------------------------------------------------
-    Remove value at front of queue (if any).
+    Merges two queues into the first queue (q1).
 
-    Precondition:  Queue is nonempty.
-    Postcondition: Value at front of queue has been removed, unless
-        queue is empty; in that case, an error message is displayed 
-        and execution allowed to proceed.
+    Precondition:  q2 is the Queue to be merged into the Queue q1.
+    Postcondition: Queue 2 is empty and Queue 1 contains all the elements
+      from Queue 1 and Queue 2.
   -----------------------------------------------------------------------*/
 
  private:
