@@ -109,7 +109,7 @@ class Queue
         and execution allowed to proceed.
   -----------------------------------------------------------------------*/
 
- void merge_two_queues(Queue q1, Queue q2);
+ void merge_two_queues(Queue q1, Queue& q2);
   /*-----------------------------------------------------------------------
     Remove value at front of queue (if any).
 

@@ -29,9 +29,13 @@ int main(void)
 
    Queue q2;
    
-   q1.merge_two_queues(q2, q1);
-   
    q2 = q1;
+
+
+   q1.merge_two_queues(q1, q2);
+   
+   
+   
    cout << "Contents of queue q2 after q2 = q1 (via  print):\n";
    print(q2); 
    cout << endl;
