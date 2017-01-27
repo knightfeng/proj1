@@ -19,6 +19,7 @@ void sim()
     static int sim_time = 0;
 
     std::cout << "Time for a plane to land (in minutes): " << std::endl;
+    std::cout << "Time for a plane to land (in minutes): " << std::endl;
     std::cin >> land_time;
 
     std::cout << "Time for a plane to takeOff (in minutes): " << std::endl;
@@ -33,7 +34,7 @@ void sim()
     std::cout << "How long to run the simulation (in minutes): " << std::endl;
     cin >> sim_time;
 
-    
+
     int i = 0;
     //sim_time;
     while (i < 1)

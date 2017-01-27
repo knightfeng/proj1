@@ -11,7 +11,7 @@ runway: $(OBJS)
 
 LQueue.o:	LQueue.h
 
-LQueue_driver.o:	LQueue_driver.C LQueue.o LQueue.h
+LQueue_driver.o:	LQueue_driver.C LQueue.o LQueue.h LQueue_simulation.o
 
 LQueue_simulation.o: LQueue_simulation.C
 
