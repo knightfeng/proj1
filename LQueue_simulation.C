@@ -9,6 +9,13 @@
 
 void sim()
 {
+
+    /*
+        -Still need to implement average time.
+        -Still need to implement a non-trivial method.
+        -Still need to comment the code with descriptions. 
+    */
+    
     Queue landing_queue;
     Queue takeoff_queue;
     bool runway_free = true;
