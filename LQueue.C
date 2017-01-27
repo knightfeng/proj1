@@ -137,47 +137,39 @@ void Queue::merge_two_queues(Queue q1, Queue &q2)
   Queue temp = Queue();
 
   // First two cases are the trivial empty list cases.
-  if (q2.empty())
-  {
+  if (q2.empty()){
     temp.~Queue();
     q1.display(cout);
     return;
   }
 
-  else if (q1.empty())
-  {
+  else if (q1.empty()){
     q1 = q2;
     temp.~Queue();
     q1.display(cout);
     return;
   }
 
-  else
-  {
+  else{
 
-    while (!q1.empty() || !q2.empty())
-    {
+    while (!q1.empty() || !q2.empty()){
 
-      if (q1.empty() && !q2.empty())
-      {
+      if (q1.empty() && !q2.empty()){
         temp.enqueue(q2.front());
         q2.dequeue();
       }
 
-      else if (!q1.empty() && q2.empty())
-      {
+      else if (!q1.empty() && q2.empty()){
         temp.enqueue(q1.front());
         q1.dequeue();
       }
 
-      else if (q1.front() <= q2.front())
-      {
+      else if (q1.front() <= q2.front()){
         temp.enqueue(q1.front());
         q1.dequeue();
       }
 
-      else
-      {
+      else{
         temp.enqueue(q2.front());
         q2.dequeue();
       }
@@ -196,21 +188,28 @@ void Queue::move_to_front(QueueElement e){
     Queue q2;
     int matched = 0;
     
-    if (empty()){ return; }
+    if (empty()){ 
+      return; }
     
     else {
+        
         Queue::NodePointer ptr;
         QueueElement current ;
         
         for (ptr = myFront; ptr != 0; ptr = ptr->next) {
+            
             current = ptr->data;
+      
             if (current != e){
                 cout << ptr->data << "  dequeued " << endl;
                 q2.enqueue(current);
-            } else {
+            } 
+            
+            else {
                 cout << current << " matched " << endl;
                 matched = current;
             }
+            
             dequeue();
         }
         
