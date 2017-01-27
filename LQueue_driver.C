@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "LQueue.h"
+#include "LQUEUE_simulation.c"
 using namespace std;
 	
 // testing for git 
@@ -12,7 +13,9 @@ void print(Queue q)
 
 int main(void)
 {
+  sim();
   
+  /*
    Queue q1;
    
    cout << "Queue created.  Empty? " << boolalpha << q1.empty() << endl;
@@ -67,7 +70,7 @@ int main(void)
     print(q1);
     cout << endl;
    
-
+*/
 
    return 0;
 }
