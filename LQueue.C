@@ -154,7 +154,7 @@ void Queue::merge_two_queues(Queue q1, Queue &q2)
 
   else
   {
-    
+
     while (!q1.empty() || !q2.empty())
     {
 

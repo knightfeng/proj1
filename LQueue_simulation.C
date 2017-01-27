@@ -10,16 +10,21 @@
 
 
 
+
 int main(void)
 {
-    //srand(time(NULL)); //SET TO NULL FOR PSEUDO-RANDOM.
-    //int answer = rand() % 100 + 1;
-    
-    int land_time = 0;
-    int takeoff_time = 0;
-    int land_rate = 0;
-    int takeoff_rate = 0;
-    int sim_time = 0;
+    srand(1); //time(NULL) as parameter in srand() FOR PSEUDO-RANDOM.
+    int rando = rand(); //% 100 + 1;
+    std::cout<<"Time: "<<rando<<std::endl;
+
+    Queue landingQueue;
+    //Queue takeoffQueue = new Queue();
+
+    static int land_time = 0;
+    static int takeoff_time = 0;
+    static int land_rate = 0;
+    static int takeoff_rate = 0;
+    static int sim_time = 0;
     
     std::cout<<"Time for a plane to land (in minutes): "<<std::endl;
     std::cin>>land_time;
@@ -35,6 +40,8 @@ int main(void)
     
     std::cout<<"How long to run the simulation (in minutes): "<<std::endl;
     cin>>sim_time;
+
+    
     
     return 0;
 }
