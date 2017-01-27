@@ -19,7 +19,6 @@ void sim()
     static int sim_time = 0;
 
     std::cout << "Time for a plane to land (in minutes): " << std::endl;
-    std::cout << "Time for a plane to land (in minutes): " << std::endl;
     std::cin >> land_time;
 
     std::cout << "Time for a plane to takeOff (in minutes): " << std::endl;
@@ -37,11 +36,21 @@ void sim()
 
     int i = 0;
     //sim_time;
-    while (i < 1)
+    while (i < sim_time)
     {
         srand(1);               //time(NULL) as parameter in srand() FOR PSEUDO-RANDOM.
         int randomOne = rand(); //% 100 + 1;
         int randomTwo = rand();
+
+        if(randomOne % 60 < land_rate){
+            std::cout << "Landing Requested!" << std::endl;
+            //Add plane to landing queue.
+        }
+
+        if(randomTwo % 60 < takeoff_rate){
+            std::cout << "Takeoff Requested!" << std::endl;
+            
+        }
 
         std::cout << "Random One: " << randomOne << std::endl;
         std::cout << "Random Two: " << randomTwo << std::endl;
