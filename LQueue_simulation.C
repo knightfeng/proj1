@@ -9,9 +9,9 @@
 
 void sim()
 {
-    Queue landingQueue;
-    Queue takeoffQueue;
-    bool runwayFree;
+    Queue landing_queue;
+    Queue takeoff_queue;
+    bool runway_free = true;
 
     static int land_time = 0;
     static int takeoff_time = 0;
@@ -35,34 +35,57 @@ void sim()
     cin >> sim_time;
 
 
-    int i = 0;
+    int time = 0;
+    int plane_number = 1000;
+    int num_planes_landing = 0;
+    int num_planes_taking = 0;
+    
+    srand(1);             //time(NULL) as parameter in srand() FOR PSEUDO-RANDOM.
+     
     //sim_time;
-    while (i < sim_time)
+    while (time < sim_time)
     {
-        srand(1);               //time(NULL) as parameter in srand() FOR PSEUDO-RANDOM.
-        int randomOne = rand(); //% 100 + 1;
-        int randomTwo = rand();
+        std::cout<<"---------------------"<<std::endl;
+        std::cout<<"Time = "<<time<<std::endl;
+        int random_one = 59; //% 100 + 1;
+        int random_two = 60; //rand()
 
-        if(randomOne % 60 < land_rate){
-            std::cout << "Landing Requested!" << std::endl;
-            //Add plane to landing queue.
+        if(random_one % 60 < land_rate){
+            
+            landing_queue.enqueue(plane_number);
+            num_planes_landing++;
+            std::cout << "Plane "<<plane_number<<" wants to land; added to the landing queue; " << num_planes_landing<<" in queue"<<std::endl;
+            plane_number++;
         }
 
-        if(randomTwo % 60 < takeoff_rate){
-            std::cout << "Takeoff Requested!" << std::endl;
-            //Add plane to takeoff queue.    
+        if(random_two % 60 < takeoff_rate){
+            
+            takeoff_queue.enqueue(plane_number);
+            num_planes_taking++;
+            std::cout << "Plane "<<plane_number<<" wants to takeoff; added to the takeoff queue; " << num_planes_taking<<" in queue"<<std::endl;
+            plane_number++;
         }
 
-        if(runwayFree){
+        if(runway_free){
 
-            if(!landingQueue.empty()){
-                //Allow first airplane to land.
+            if(!landing_queue.empty()){
+                QueueElement temp = landing_queue.front();
+                landing_queue.dequeue();
+                num_planes_landing--;
+                std::cout << "Landing: Plane "<<temp<<"; "<<num_planes_landing<<" in queue"<<std::endl;
+            }
+
+            else if (!takeoff_queue.empty()){
+                QueueElement temp = takeoff_queue.front();
+                takeoff_queue.dequeue();
+                num_planes_taking--;
+                std::cout << "Taking off: Plane "<<temp<<"; "<<num_planes_taking<<" in queue"<<std::endl;
             }
         }
         
 
-        std::cout << "Random One: " << randomOne << std::endl;
-        std::cout << "Random Two: " << randomTwo << std::endl;
-        i++;
+        std::cout << "Random One: " << random_one << std::endl;
+        std::cout << "Random Two: " << random_two << std::endl;
+        time++;
     }
 }

@@ -5,6 +5,10 @@
 #include <iostream>
 #include "LQueue.h"
 #include "LQUEUE_simulation.c"
+
+#include <cstdlib>
+#include <time.h>
+
 using namespace std;
 	
 // testing for git 
@@ -13,8 +17,10 @@ void print(Queue q)
 
 int main(void)
 {
+   srand(time(NULL));             //time(NULL) as parameter in srand() FOR PSEUDO-RANDOM.
+   
   sim();
-  
+
   /*
    Queue q1;
    
