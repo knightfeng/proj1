@@ -190,3 +190,40 @@ void Queue::merge_two_queues(Queue q1, Queue &q2)
     return;
   }
 }
+
+
+void Queue::move_to_front(QueueElement e){
+    Queue q2;
+    int matched = 0;
+    
+    if (empty()){ return; }
+    
+    else {
+        Queue::NodePointer ptr;
+        QueueElement current ;
+        
+        for (ptr = myFront; ptr != 0; ptr = ptr->next) {
+            current = ptr->data;
+            if (current != e){
+                cout << ptr->data << "  dequeued " << endl;
+                q2.enqueue(current);
+            } else {
+                cout << current << " matched " << endl;
+                matched = current;
+            }
+            dequeue();
+        }
+        
+        myFront = 0;
+        
+        if (matched != 0){
+            enqueue(matched);
+        }
+        
+        for (Queue::NodePointer ptr2 = q2.myFront; ptr2 != 0; ptr2 = ptr2->next) {
+             enqueue(ptr2->data);
+             q2.dequeue();
+        }
+    }
+}
+

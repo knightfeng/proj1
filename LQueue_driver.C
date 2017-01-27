@@ -6,7 +6,7 @@
 #include "LQueue.h"
 using namespace std;
 	
-
+// testing for git 
 void print(Queue q)
 { q.display(cout); }
 
@@ -57,7 +57,15 @@ int main(void)
    cout << "Trying to remove front of q2: " << endl;
    q2.dequeue();
    //system("PAUSE");
-   
+    
+    cout << "TestPart1A\n"  << endl;
+    QueueElement e = 500;
+    q1.move_to_front(e);
+    
+    cout << "finished test1: " << endl;
+    cout << "queue 1: " << endl;
+    print(q1);
+    cout << endl;
    
 
 
