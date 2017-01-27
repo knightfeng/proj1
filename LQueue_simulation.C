@@ -10,7 +10,8 @@
 void sim()
 {
     Queue landingQueue;
-    //Queue takeoffQueue = new Queue();
+    Queue takeoffQueue;
+    bool runwayFree;
 
     static int land_time = 0;
     static int takeoff_time = 0;
@@ -49,8 +50,16 @@ void sim()
 
         if(randomTwo % 60 < takeoff_rate){
             std::cout << "Takeoff Requested!" << std::endl;
-            
+            //Add plane to takeoff queue.    
         }
+
+        if(runwayFree){
+
+            if(!landingQueue.empty()){
+                //Allow first airplane to land.
+            }
+        }
+        
 
         std::cout << "Random One: " << randomOne << std::endl;
         std::cout << "Random Two: " << randomTwo << std::endl;
