@@ -20,6 +20,7 @@ int main(void)
    srand(time(NULL));             //time(NULL) as parameter in srand() FOR PSEUDO-RANDOM.
    
   sim();
+    
 
   /*
    Queue q1;

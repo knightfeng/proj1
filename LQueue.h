@@ -117,14 +117,14 @@ class Queue
     Postcondition: Queue 2 is empty and Queue 1 contains all the elements
       from Queue 1 and Queue 2.
   -----------------------------------------------------------------------*/
-void move_to_front(QueueElement e);
-/*-----------------------------------------------------------------------
+  void move_to_front(QueueElement e);
+  /*-----------------------------------------------------------------------
     Move particular key value(e) to the front of the same queue. 
 
     Precondition: e is not null. 
     Postcondition: key value(e) will be the first node of the queue.
   -----------------------------------------------------------------------*/
-
+    
 
  private:
    /*** Node class ***/
