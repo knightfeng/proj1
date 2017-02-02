@@ -8,6 +8,7 @@
 using namespace std;
 
 #include "LQueue.h"
+#include <typeinfo>
 
 //--- Definition of Queue constructor
 Queue::Queue()
@@ -99,7 +100,7 @@ void Queue::display(ostream &out) const
 {
   Queue::NodePointer ptr;
   for (ptr = myFront; ptr != 0; ptr = ptr->next)
-    out << ptr->data << "  ";
+    out << ptr->data << " ";
   out << endl;
 }
 
@@ -129,100 +130,115 @@ void Queue::dequeue()
     cerr << "*** Queue is empty -- can't remove a value ***\n";
 }
 
-void Queue::merge_two_queues(Queue q1, Queue &q2)
+void Queue::merge_two_queues(Queue &q2)
 {
 
-  std::cout << "----MERGING TWO QUEUES INITIALIZED----" << std::endl;
-
+  Queue* q1 = this;
   Queue temp = Queue();
 
   // First two cases are the trivial empty list cases.
-  if (q2.empty()){
+  if (q2.empty())
+  {
     temp.~Queue();
-    q1.display(cout);
     return;
   }
 
-  else if (q1.empty()){
-    q1 = q2;
+  else if (q1->empty())
+  {
+    *q1=q2;
     temp.~Queue();
-    q1.display(cout);
     return;
   }
 
-  else{
+  else
+  {
+    //Merge two lists 
+    while (!q1->empty() || !q2.empty())
+    {
 
-    while (!q1.empty() || !q2.empty()){
-
-      if (q1.empty() && !q2.empty()){
+      if (q1->empty() && !q2.empty())
+      {
         temp.enqueue(q2.front());
         q2.dequeue();
       }
 
-      else if (!q1.empty() && q2.empty()){
-        temp.enqueue(q1.front());
-        q1.dequeue();
+      else if (!q1->empty() && q2.empty())
+      {
+        temp.enqueue(q1->front());
+        q1->dequeue();
       }
 
-      else if (q1.front() <= q2.front()){
-        temp.enqueue(q1.front());
-        q1.dequeue();
+      else if (q1->front() <= q2.front())
+      {
+        temp.enqueue(q1->front());
+        q1->dequeue();
       }
 
-      else{
+      else
+      {
         temp.enqueue(q2.front());
         q2.dequeue();
       }
     }
 
-    q1 = temp;
+    //Assign q1 to merged list and destroy q2.
+    *q1=temp;
     q2.~Queue();
 
-    q1.display(cout);
     return;
   }
 }
 
+void Queue::move_to_front(QueueElement e)
+{
+  
+  //NULL Guard along with empty Queue case.
+  if (e == NULL || empty())
+  {
+    return;
+  }
 
-void Queue::move_to_front(QueueElement e){
-    Queue q2;
-    int matched = 0;
-    
-    if (empty()){ 
-      return; }
-    
-    else {
-        
-        Queue::NodePointer ptr;
-        QueueElement current ;
-        
-        for (ptr = myFront; ptr != 0; ptr = ptr->next) {
-            
-            current = ptr->data;
-      
-            if (current != e){
-                cout << ptr->data << "  dequeued " << endl;
-                q2.enqueue(current);
-            } 
-            
-            else {
-                cout << current << " matched " << endl;
-                matched = current;
-            }
-            
-            dequeue();
-        }
-        
-        myFront = 0;
-        
-        if (matched != 0){
-            enqueue(matched);
-        }
-        
-        for (Queue::NodePointer ptr2 = q2.myFront; ptr2 != 0; ptr2 = ptr2->next) {
-             enqueue(ptr2->data);
-             q2.dequeue();
-        }
+  //We skip right to the second Node since if the first Node matches then it's already in place.
+  if (myFront->next == NULL)
+    return;
+  if (myFront->next->data == e)
+  {
+    Node *secondNode = myFront;
+    Node *newNode = new Node(e);
+    Node *removeNode = myFront->next;
+
+    this->myFront = newNode;
+    newNode->next = secondNode;
+
+    delete removeNode;
+    removeNode = NULL;
+  }
+
+  //Declaring for loop variables.
+  QueueElement nextElement;
+
+  //We loop starting from the second Node checking to see if the Node ahead matches e.
+  for (Node *ptr = myFront->next; ptr != NULL; ptr = ptr->next)
+  {
+
+    if (ptr->next == NULL)
+      return;
+
+    nextElement = ptr->next->data;
+
+    if (nextElement == e)
+    {
+      Node *secondNode = myFront;
+      Node *newNode = new Node(nextElement);
+      Node *removeNode = ptr->next;
+
+      ptr->next = ptr->next->next;
+
+      this->myFront = newNode;
+      newNode->next = secondNode;
+
+      delete removeNode;
+      removeNode = NULL;
     }
+  }
 }
-

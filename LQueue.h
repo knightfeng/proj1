@@ -99,6 +99,9 @@ class Queue
         "garbage value" is returned.
   -----------------------------------------------------------------------*/
 
+
+
+
   void dequeue();
   /*-----------------------------------------------------------------------
     Remove value at front of queue (if any).
@@ -109,28 +112,31 @@ class Queue
         and execution allowed to proceed.
   -----------------------------------------------------------------------*/
 
- void merge_two_queues(Queue q1, Queue& q2);
+ void move_to_front(QueueElement e);
   /*-----------------------------------------------------------------------
-    Merges two queues into the first queue (q1).
-
-    Precondition:  q2 is the Queue to be merged into the Queue q1.
-    Postcondition: Queue 2 is empty and Queue 1 contains all the elements
-      from Queue 1 and Queue 2.
-  -----------------------------------------------------------------------*/
-void move_to_front(QueueElement e);
-/*-----------------------------------------------------------------------
     Move particular key value(e) to the front of the same queue. 
-
+    
     Precondition: e is not null. 
     Postcondition: key value(e) will be the first node of the queue.
   -----------------------------------------------------------------------*/
 
+
+void merge_two_queues(Queue& q2);
+  /*-----------------------------------------------------------------------
+    Merges two queues into the first queue (q1).
+
+    Precondition:  q2 is the Queue to be merged into this queue.
+    Postcondition: q2 is empty and this queue contains all the elements
+      from this queue and q2.
+  -----------------------------------------------------------------------*/
+     
 
  private:
    /*** Node class ***/
    class Node
    {
     public:
+      
       QueueElement data;
       Node * next;
       //--- Node constructor
@@ -140,7 +146,7 @@ void move_to_front(QueueElement e);
         Postcondition: A Node has been constructed with value in its 
              data part and its next part set to link (default 0).
        ------------------------------------------------------------------*/
-      { data = value; next = link; }
+      { data = value; next = link;}
 
   };
 
@@ -149,6 +155,8 @@ void move_to_front(QueueElement e);
   /***** Data Members *****/
   NodePointer myFront,      // pointer to front of queue
               myBack;       // pointer to back of queue
+
+
 
 }; // end of class declaration
 
